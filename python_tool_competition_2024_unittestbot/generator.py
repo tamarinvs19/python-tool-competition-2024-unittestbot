@@ -89,9 +89,9 @@ if __name__ == "__main__":
     test_code = UnittestbotTestGenerator().build_test(
             FileInfo(
                 pathlib.Path(
-                    "/home/vyacheslav/Projects/sbft/python-tool-competition-2024-unittestbot/targets/example1.py"
-                ),
-                "example1",
+                    "../targets/sub_example/example3.py"
+                ).absolute(),
+                "sub_example.example3",
                 get_config(
                     GeneratorName("Unittestbot"),
                     pathlib.Path("").absolute(),
@@ -102,6 +102,6 @@ if __name__ == "__main__":
                 ),
             )
         )
-    if test_code is TestGenerationSuccess:
+    if isinstance(test_code, TestGenerationSuccess):
         print(test_code.body)
 
