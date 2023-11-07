@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "python_tool_competition_2024_unittestbot"}]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.11"
 python-tool-competition-2024 = "^0.1.1"
 
 
