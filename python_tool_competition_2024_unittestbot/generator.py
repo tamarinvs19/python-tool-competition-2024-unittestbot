@@ -1,5 +1,5 @@
 """A test generator using UnitTestBot."""
-import os.path
+import os
 import pathlib
 import site
 import subprocess
@@ -13,6 +13,7 @@ from python_tool_competition_2024.generation_results import (
     TestGenerationFailure,
     TestGenerationResult,
     TestGenerationSuccess,
+    FailureReason,
 )
 from python_tool_competition_2024.generators import FileInfo, TestGenerator
 
@@ -48,36 +49,40 @@ class UnittestbotTestGenerator(TestGenerator):
             output_file = output_dir / f"test_{module_name}.py"
             timeout = 30_000
             _run_utbot(
-                str(target_file_info.absolute_path),
-                [str(path) for path in sys_paths],
-                python_path,
-                str(output_file),
+                target_file_info.absolute_path,
+                sys_paths,
+                output_file,
+                jar_file,
+                usvm_path,
                 timeout,
-                str(jar_file),
+                python_path,
                 self.java_path,
-                str(usvm_path),
             )
 
             utbot_tests = _read_generated_tests(str(output_file))
+            if utbot_tests == "":
+                return TestGenerationFailure(tuple(), FailureReason.NOTHING_GENERATED)
+
             return TestGenerationSuccess(utbot_tests)
 
 
 def _run_utbot(
-        source_file: str,
-        sys_paths: list[str],
-        python_path: str,
-        output_file: str,
-        timeout: int,
-        jar_path: str,
-        java_cmd: str,
-        usvm_dir: str,
+    source_file: pathlib.Path,
+    sys_paths: list[pathlib.Path],
+    output_file: pathlib.Path,
+    jar_path: pathlib.Path,
+    usvm_dir: pathlib.Path,
+    timeout: int,
+    python_path: str,
+    java_cmd: str,
 ):
-    command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {','.join(sys_paths)} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir} --runtime-exception-behaviour PASS" # --prohibited-exceptions builtins.TypeError,builtins.NotImplemented"
+    command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {','.join(map(str, sys_paths))} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir} --runtime-exception-behaviour PASS"  # --prohibited-exceptions builtins.TypeError,builtins.NotImplemented"
     print(command)
 
     def stdout_printer(p):
         for line in p.stdout:
             print(line.decode("utf-8").strip())
+
     p = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
     t = threading.Thread(target=stdout_printer, args=(p,))
     t.start()
@@ -85,8 +90,11 @@ def _run_utbot(
 
 
 def _read_generated_tests(output_file: str) -> str:
-    with open(output_file, "r") as f:
-        return f.read()
+    try:
+        with open(output_file, "r") as f:
+            return f.read()
+    except:
+        return ""
 
 
 if __name__ == "__main__":
