@@ -35,7 +35,7 @@ class UnittestbotTestGenerator(TestGenerator):
         current_dir_path = pathlib.Path(os.path.dirname(__file__))
         jar_file = current_dir_path / "utbot-cli-python.jar"
         usvm_path = current_dir_path / "usvm-python"
-        sys_paths = [target_file_info.absolute_path.parent]
+        sys_paths = [target_file_info.config.targets_dir]
         python_path = sys.executable
 
         with tempfile.TemporaryDirectory() as tempdir:
@@ -68,7 +68,7 @@ def _run_utbot(
         java_cmd: str,
         usvm_dir: str,
 ):
-    command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {' '.join(sys_paths)} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir}"
+    command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {','.join(sys_paths)} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir} --runtime-exception-behaviour PASS --prohibited-exceptions builtins.TypeError,builtins.NotImplemented"
     print(command)
 
     def stdout_printer(p):
@@ -89,12 +89,12 @@ if __name__ == "__main__":
     test_code = UnittestbotTestGenerator().build_test(
             FileInfo(
                 pathlib.Path(
-                    "../targets/sub_example/example3.py"
+                    "../targets/example4.py"
                 ).absolute(),
-                "sub_example.example3",
+                "example4",
                 get_config(
                     GeneratorName("Unittestbot"),
-                    pathlib.Path("").absolute(),
+                    pathlib.Path("../targets").absolute(),
                     pathlib.Path("").absolute(),
                     rich.console.Console(),
                     show_commands=True,
