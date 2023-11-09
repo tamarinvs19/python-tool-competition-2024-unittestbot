@@ -6,6 +6,14 @@ UnitTestBot.
 For more information see
 <https://github.com/ThunderKey/python-tool-competition-2024/>.
 
+## Requirements
+
+* Python 3.11, implementation: CPython
+* poetry
+* OS: Linux
+* Java 17, accessible in command line under name `java`
+* glibc>=2.31
+
 ## Installation
 
 * Install [poetry](https://python-poetry.org/)
