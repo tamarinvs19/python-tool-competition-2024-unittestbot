@@ -34,6 +34,10 @@ class UnittestbotTestGenerator(TestGenerator):
             Either a `TestGenerationSuccess` if it was successful, or a
             `TestGenerationFailure` otherwise.
         """
+        if not sys.platform.startswith("linux"):
+            sys.stderr.write("ERROR: This script works only on Linux\n")
+            exit(1)
+
         site_dir = pathlib.Path(site.getsitepackages()[0])
         jar_file = site_dir / "utbot_dist" / "utbot-cli-python-2023.11-SNAPSHOT.jar"
         usvm_path = site_dir / "utbot_dist" / "usvm-python"
