@@ -9,7 +9,9 @@ packages = [{include = "python_tool_competition_2024_unittestbot"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 python-tool-competition-2024 = "^0.1.1"
-utbot_dist = { url = "https://github.com/tochilinak/tmp/releases/download/v0.0/utbot_dist-0.1.0.tar.gz" }
+utbot_dist = [
+    { url = "https://github.com/tamarinvs19/python-tool-competition-2024-unittestbot/releases/download/v0/utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl", platform = "linux" }
+]
 
 [build-system]
 requires = ["poetry-core"]

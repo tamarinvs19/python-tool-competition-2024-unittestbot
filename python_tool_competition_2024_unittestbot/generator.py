@@ -35,10 +35,8 @@ class UnittestbotTestGenerator(TestGenerator):
             `TestGenerationFailure` otherwise.
         """
         site_dir = pathlib.Path(site.getsitepackages()[0])
-        jar_file = site_dir / "utbot_dist" / "utbot-cli-python.jar"
-
-        current_dir_path = pathlib.Path(os.path.dirname(__file__))
-        usvm_path = current_dir_path / "usvm-python"
+        jar_file = site_dir / "utbot_dist" / "utbot-cli-python-2023.11-SNAPSHOT.jar"
+        usvm_path = site_dir / "utbot_dist" / "usvm-python"
 
         sys_paths = [target_file_info.config.targets_dir]
         python_path = sys.executable
