@@ -2,3 +2,4 @@ __pycache__/
 /results/
 .dmypy.json
 results.txt
+.coverage

@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import threading
+import time
 
 import rich
 from python_tool_competition_2024.config import get_config, GeneratorName
@@ -81,14 +82,11 @@ def _run_utbot(
     command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {','.join(map(str, sys_paths))} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir} --runtime-exception-behaviour PASS"  # --prohibited-exceptions builtins.TypeError,builtins.NotImplemented"
     print(command)
 
-    def stdout_printer(p):
-        for line in p.stdout:
-            print(line.decode("utf-8").strip())
-
-    p = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-    t = threading.Thread(target=stdout_printer, args=(p,))
-    t.start()
-    t.join()
+    p = subprocess.Popen(command.split(), close_fds=True)
+    while p.poll() is None:
+        time.sleep(1)
+    
+    print("Process finished.")
 
 
 def _read_generated_tests(output_file: str) -> str:
