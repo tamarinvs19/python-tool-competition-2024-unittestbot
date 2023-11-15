@@ -50,7 +50,7 @@ class UnittestbotTestGenerator(TestGenerator):
             output_dir = pathlib.Path(tempdir)
             module_name = target_file_info.module_name.replace(".", "_")
             output_file = output_dir / f"test_{module_name}.py"
-            timeout = 30_000
+            timeout = 60_000
             _run_utbot(
                 target_file_info.absolute_path,
                 sys_paths,
@@ -79,14 +79,15 @@ def _run_utbot(
     python_path: str,
     java_cmd: str,
 ):
-    command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {','.join(map(str, sys_paths))} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir} --runtime-exception-behaviour PASS"  # --prohibited-exceptions builtins.TypeError,builtins.NotImplemented"
+    command = f"{java_cmd} -jar {jar_path} generate_python {source_file} -p {python_path} -o {output_file} -s {','.join(map(str, sys_paths))} -t {timeout} --java-cmd {java_cmd} --usvm-dir {usvm_dir} --runtime-exception-behaviour PASS --prohibited-exceptions -"
     print(command)
+    start = time.time()
 
     p = subprocess.Popen(command.split(), close_fds=True)
     while p.poll() is None:
         time.sleep(1)
     
-    print("Process finished.")
+    print("Process finished in", time.time() - start)
 
 
 def _read_generated_tests(output_file: str) -> str:

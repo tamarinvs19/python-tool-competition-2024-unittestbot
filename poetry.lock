@@ -1294,12 +1294,12 @@ description = ""
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl", hash = "sha256:c6c15c8858324c71140f56941cfcbd2b62844a586e97b3b331d4eff99c4987bb"},
+    {file = "utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl", hash = "sha256:137d00e827de31737b3ec1b239b132b1da3485a3aa99afd1890ab913497e5036"},
 ]
 
 [package.source]
 type = "url"
-url = "https://github.com/tamarinvs19/python-tool-competition-2024-unittestbot/releases/download/v5/utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl"
+url = "https://github.com/tamarinvs19/python-tool-competition-2024-unittestbot/releases/download/v6/utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl"
 
 [[package]]
 name = "wheel"
@@ -1415,4 +1415,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.12"
-content-hash = "455a5ffbf0926ac6c9482112c427e727e2ea6115221aefb29a4d2c71dd89c7ec"
+content-hash = "f3d3cfc2d8e6bb820548cfe915870fbdeb8106cbb10d35687548fda38fe27711"
