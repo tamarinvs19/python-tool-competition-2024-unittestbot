@@ -19,3 +19,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.plugins."python_tool_competition_2024.test_generators"]
 unittestbot = "python_tool_competition_2024_unittestbot.generator:UnittestbotTestGenerator"
+
+[tool.poetry.scripts]
+check = "python_tool_competition_2024_unittestbot.check_usvm:main"
