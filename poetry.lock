@@ -1112,13 +1112,13 @@ iterfzf = "*"
 
 [[package]]
 name = "rich"
-version = "13.6.0"
+version = "13.7.0"
 description = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 optional = false
 python-versions = ">=3.7.0"
 files = [
-    {file = "rich-13.6.0-py3-none-any.whl", hash = "sha256:2b38e2fe9ca72c9a00170a1a2d20c63c790d0e10ef1fe35eba76e1e7b1d7d245"},
-    {file = "rich-13.6.0.tar.gz", hash = "sha256:5c14d22737e6d5084ef4771b62d5d4363165b403455a30a1c8ca39dc7b644bef"},
+    {file = "rich-13.7.0-py3-none-any.whl", hash = "sha256:6da14c108c4866ee9520bbffa71f6fe3962e193b7da68720583850cd4548e235"},
+    {file = "rich-13.7.0.tar.gz", hash = "sha256:5cb5123b5cf9ee70584244246816e9114227e0b98ad9176eede6ad54bf5403fa"},
 ]
 
 [package.dependencies]
@@ -1294,12 +1294,12 @@ description = ""
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl", hash = "sha256:137d00e827de31737b3ec1b239b132b1da3485a3aa99afd1890ab913497e5036"},
+    {file = "utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl", hash = "sha256:6b48cfad7395d4c284f043c8309f510005341f1a9f6bc74e859fa6a4af09fd84"},
 ]
 
 [package.source]
 type = "url"
-url = "https://github.com/tamarinvs19/python-tool-competition-2024-unittestbot/releases/download/v6/utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl"
+url = "https://github.com/tamarinvs19/python-tool-competition-2024-unittestbot/releases/download/v14/utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl"
 
 [[package]]
 name = "wheel"
@@ -1415,4 +1415,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.12"
-content-hash = "f3d3cfc2d8e6bb820548cfe915870fbdeb8106cbb10d35687548fda38fe27711"
+content-hash = "6d78514d8790de6ebff73a1328d8f774f5eeb6b1ddcfad4dcf2893a0cec39bae"

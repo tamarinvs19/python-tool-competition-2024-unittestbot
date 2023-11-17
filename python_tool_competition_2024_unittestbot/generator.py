@@ -50,7 +50,7 @@ class UnittestbotTestGenerator(TestGenerator):
             output_dir = pathlib.Path(tempdir)
             module_name = target_file_info.module_name.replace(".", "_")
             output_file = output_dir / f"test_{module_name}.py"
-            timeout = 60_000
+            timeout = 90_000
             _run_utbot(
                 target_file_info.absolute_path,
                 sys_paths,
@@ -67,6 +67,9 @@ class UnittestbotTestGenerator(TestGenerator):
                 return TestGenerationFailure(tuple(), FailureReason.NOTHING_GENERATED)
 
             return TestGenerationSuccess(utbot_tests)
+
+
+times = []
 
 
 def _run_utbot(
@@ -87,7 +90,11 @@ def _run_utbot(
     while p.poll() is None:
         time.sleep(1)
     
-    print("Process finished in", time.time() - start)
+    cur_time = time.time() - start
+    times.append(cur_time)
+    print("Process finished in", cur_time)
+    print("Mean time:", sum(times) / len(times))
+    print("Max time:", max(times))
 
 
 def _read_generated_tests(output_file: str) -> str:
