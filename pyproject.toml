@@ -12,6 +12,8 @@ python-tool-competition-2024 = "^0.1.1"
 utbot_dist = [
     { url = "https://github.com/tamarinvs19/python-tool-competition-2024-unittestbot/releases/download/v18/utbot_dist-0.1.0-py3-none-manylinux_2_31_x86_64.whl", platform = "linux" }
 ]
+utbot_mypy_runner = "0.2.15"
+utbot_executor = "1.9.2"
 
 [build-system]
 requires = ["poetry-core"]
